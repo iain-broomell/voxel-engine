@@ -71,12 +71,12 @@
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
-    <IncludePath>C:\Users\IBroomell\Documents\GitHub\voxel-engine\Voxel-Engine\libraries\glfw-3.4.bin.WIN64\include;$(IncludePath)</IncludePath>
-    <LibraryPath>C:\Users\IBroomell\Documents\GitHub\voxel-engine\Voxel-Engine\libraries\glfw-3.4.bin.WIN64\lib-vc2022;$(LibraryPath)</LibraryPath>
+    <IncludePath>C:\Users\IBroomell\Documents\GitHub\voxel-engine\Voxel-Engine\libraries\include;$(IncludePath)</IncludePath>
+    <LibraryPath>C:\Users\IBroomell\Documents\GitHub\voxel-engine\Voxel-Engine\libraries\lib-vc2022;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
-    <IncludePath>C:\Users\IBroomell\Documents\GitHub\voxel-engine\Voxel-Engine\libraries\glfw-3.4.bin.WIN64\include;$(IncludePath)</IncludePath>
-    <LibraryPath>C:\Users\IBroomell\Documents\GitHub\voxel-engine\Voxel-Engine\libraries\glfw-3.4.bin.WIN64\lib-vc2022;$(LibraryPath)</LibraryPath>
+    <IncludePath>C:\Users\IBroomell\Documents\GitHub\voxel-engine\Voxel-Engine\libraries\include;$(IncludePath)</IncludePath>
+    <LibraryPath>C:\Users\IBroomell\Documents\GitHub\voxel-engine\Voxel-Engine\libraries\lib-vc2022;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
@@ -112,7 +112,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>C:\Users\IBroomell\Documents\GitHub\voxel-engine\Voxel-Engine\libraries\glfw-3.4.bin.WIN64\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>C:\Users\IBroomell\Documents\GitHub\voxel-engine\Voxel-Engine\libraries\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -129,7 +129,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>C:\Users\IBroomell\Documents\GitHub\voxel-engine\Voxel-Engine\libraries\glfw-3.4.bin.WIN64\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>C:\Users\IBroomell\Documents\GitHub\voxel-engine\Voxel-Engine\libraries\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
