@@ -1,4 +1,6 @@
 #include <GLFW/glfw3.h>
+#include <glad/glad.h>
+#include <iostream>
 
 int main(void)
 {
@@ -27,7 +29,7 @@ int main(void)
 
         /* Swap front and back buffers */
         glfwSwapBuffers(window);
-
+        
         /* Poll for and process events */
         glfwPollEvents();
     }
