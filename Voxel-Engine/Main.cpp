@@ -1,7 +1,16 @@
+/*
+Script inspired by OpenGL Course by Victor Gordan at FreeCodeCamp.org: https://www.youtube.com/watch?v=45MIykWJ-C4&t=2037s
+*/
+
 #include <glad/glad.h>
 #include <GLFW/glfw3.h>
 #include <iostream>
 #include <vector>
+
+#include"shaderClass.h"
+#include"EBO.h"
+#include"VAO.h"
+#include"VBO.h"
 
 int main(void)
 {
@@ -48,56 +57,22 @@ int main(void)
 
     glViewport(0, 0, 800, 800);
 
-    std::cout << "Compiling vertex shader..." << std::endl;
-    GLuint vertexShader = glCreateShader(GL_VERTEX_SHADER);
-    glShaderSource(vertexShader, 1, &vertexShaderSource, NULL);
-    glCompileShader(vertexShader);
+    // Generate a shader program using default shaders
+    Shader shaderProgram("default.vert", "default.frag");
 
-    GLsizei maxLength = 500;
-    GLchar errorLog[500];
-    glGetShaderInfoLog(vertexShader, maxLength, &maxLength, &errorLog[0]);
-    std::cerr << errorLog << std::endl;
+    // Create Vertex Array Object and set as current
+    VAO VAO1;
+    VAO1.Bind();
 
-    std::cout << "Compiling fragment shader..." << std::endl;
-    GLuint fragmentShader = glCreateShader(GL_FRAGMENT_SHADER);
-    glShaderSource(fragmentShader, 1, &fragmentShaderSource, NULL);
-    glCompileShader(fragmentShader);
+    // Generate buffer objects and pass in vertices and indices for setup
+    VBO VBO1(vertices, sizeof(vertices));
+    EBO EBO1(indices, sizeof(indices));
 
-    glGetShaderInfoLog(fragmentShader, maxLength, &maxLength, &errorLog[0]);
-    std::cerr << errorLog << std::endl;
-
-    std::cout << "Creating shader program..." << std::endl;
-    GLuint shaderProgram = glCreateProgram();
-    glAttachShader(shaderProgram, vertexShader);
-    glAttachShader(shaderProgram, fragmentShader);
-    glLinkProgram(shaderProgram);
-
-    glGetProgramInfoLog(shaderProgram, maxLength, &maxLength, &errorLog[0]);
-    std::cerr << errorLog << std::endl;
-
-    glDeleteShader(vertexShader);
-    glDeleteShader(fragmentShader);
-
-    GLuint VAO, VBO, EBO;
-    glGenVertexArrays(1, &VAO);
-    glGenBuffers(1, &VBO);
-    glGenBuffers(1, &EBO);
-
-    glBindVertexArray(VAO);
-
-    glBindBuffer(GL_ARRAY_BUFFER, VBO);
-
-    glBufferData(GL_ARRAY_BUFFER, sizeof(vertices), vertices, GL_STATIC_DRAW);
-
-    glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, EBO);
-    glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(indices), indices, GL_STATIC_DRAW);
-
-    glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 3 * sizeof(float), (void*)0);
-    glEnableVertexAttribArray(0);
-
-    glBindBuffer(GL_ARRAY_BUFFER, 0);
-    glBindVertexArray(0);
-    glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, 0);
+    // Link Vertex Buffer Object to VAO, unbind buffers and arrays
+    VAO1.LinkVBO(VBO1, 0);
+    VAO1.UnBind();
+    VBO1.UnBind();
+    EBO1.UnBind();
 
     /* Loop until the user closes the window */
     while (!glfwWindowShouldClose(window))
@@ -105,8 +80,8 @@ int main(void)
         /* Render here */
         glClearColor(0.07f, 0.13f, 0.17f, 1.0f);
         glClear(GL_COLOR_BUFFER_BIT);
-        glUseProgram(shaderProgram);
-        glBindVertexArray(VAO);
+        shaderProgram.Activate();
+        VAO1.Bind();
         glDrawElements(GL_TRIANGLES, 9, GL_UNSIGNED_INT, 0);
 
         /* Swap front and back buffers */
@@ -116,10 +91,10 @@ int main(void)
         glfwPollEvents();
     }
 
-    glDeleteVertexArrays(1, &VAO);
-    glDeleteBuffers(1, &VBO);
-    glDeleteProgram(shaderProgram);
-    glDeleteBuffers(1, &EBO);
+    VAO1.Delete();
+    VBO1.Delete();
+    EBO1.Delete();
+    shaderProgram.Delete();
 
     glfwTerminate();
     return 0;
