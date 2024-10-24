@@ -7,10 +7,10 @@ Script inspired by OpenGL Course by Victor Gordan at FreeCodeCamp.org: https://w
 #include <iostream>
 #include <vector>
 
-#include"shaderClass.h"
-#include"EBO.h"
-#include"VAO.h"
 #include"VBO.h"
+#include"VAO.h"
+#include"EBO.h"
+#include"shaderClass.h"
 
 int main(void)
 {
